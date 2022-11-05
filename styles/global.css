@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: Poppins;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.wp-block-gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.wp-block-image {
+  width: calc(100% / 2);
+  margin: 0;
+}
+
+.wp-block-image img {
+  display: block;
+  width: 98%;
+  height: auto;
+  margin: 1%;
+  object-fit: contain;
+}

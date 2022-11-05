@@ -1,0 +1,8 @@
+#postswrapper {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #e9e9e9;
+}
