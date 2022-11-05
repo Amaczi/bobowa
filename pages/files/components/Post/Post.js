@@ -1,13 +1,13 @@
 // React & style imports
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./post.module.css";
 
 // Next.js imports
 import Link from "next/link";
 
-// Component & other imports
-import { format } from "date-fns";
-import { v4 as uuidv4 } from "uuid";
+// Other imports
 import { apiConnect } from "../../api/basic";
 
 export default function Post({ data }) {

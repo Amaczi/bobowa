@@ -1,8 +1,6 @@
 // React & style imports
 import React, { useRef } from "react";
 import styles from "./postpagination.module.css";
-
-// Component imports
 import ReactPaginate from "react-paginate";
 
 export default function PostPagination({
