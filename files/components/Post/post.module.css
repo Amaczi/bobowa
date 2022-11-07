@@ -65,3 +65,33 @@
   font-family: Poppins;
   font-weight: 600;
 }
+
+@media only screen and (max-width: 1000px) {
+  .post {
+    width: calc(100% - 4rem);
+    padding: 1.5rem;
+    margin: 1rem 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .post_category {
+    font-size: 0.75rem;
+  }
+
+  .post_date {
+    font-size: 0.75rem;
+  }
+
+  .post_title {
+    font-size: 1.125rem;
+  }
+
+  .post_description {
+    font-size: 0.875rem;
+  }
+
+  .post_readmore button > a {
+    font-size: 0.75rem;
+  }
+}

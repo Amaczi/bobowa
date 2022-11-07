@@ -32,3 +32,16 @@ p {
   margin: 1%;
   object-fit: contain;
 }
+
+.wp-block-embed {
+  width: 100%;
+  margin: 0.75rem 0;
+}
+
+.wp-block-embed__wrapper {
+  width: 100%;
+}
+
+.wp-block-embed__wrapper > iframe {
+  width: 100%;
+}

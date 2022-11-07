@@ -54,8 +54,13 @@ export default function Post() {
       </div>
       {post ? (
         <div id={styles.singlepost}>
-          <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }}></h1>
-          <p>{format(new Date(post?.date), "dd LLLL u - HH:mm")}</p>
+          <h1
+            id={styles.singlepost_title}
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          ></h1>
+          <p id={styles.singlepost_date}>
+            {format(new Date(post?.date), "dd LLLL u - HH:mm")}
+          </p>
           <img src={image || DEFAULT_IMAGE} alt="post"></img>
           <div
             id={styles.singlepostdata}

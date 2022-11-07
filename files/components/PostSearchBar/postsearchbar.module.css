@@ -37,3 +37,18 @@
   font-size: 1.75rem;
   padding: 0.625rem;
 }
+
+@media only screen and (max-width: 600px) {
+  #post_searchbar_wrapper {
+    width: calc(100% - 2rem);
+    padding: 0rem 1rem 1rem;
+  }
+
+  #post_searchbar_wrapper form {
+    width: 100%;
+  }
+
+  #post_searchbar_wrapper form > input {
+    width: calc(100% - 3rem);
+  }
+}
