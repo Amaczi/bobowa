@@ -1,7 +1,6 @@
 // React & style imports
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { apiConnect } from "../../files/api/basic";
 import styles from "./singlepost.module.css";
 
 // Next.js imports
@@ -9,6 +8,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // Other imports
+import Loader from "../../files/components/Loader/Loader";
+import { apiConnect } from "../../files/api/basic";
 import { dangerousData } from "../../files/utils/basic";
 
 // Defaults
@@ -68,7 +69,7 @@ export default function Post() {
           ></div>
         </div>
       ) : (
-        <div>Loading Post</div>
+        <Loader loading="post" />
       )}
     </div>
   );

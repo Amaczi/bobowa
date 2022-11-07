@@ -6,6 +6,7 @@ import styles from "./postswrapper.module.css";
 import Post from "../Post/Post";
 import PostPagination from "../PostPagination/PostPagination";
 import PostSearchBar from "../PostSearchBar/PostSearchBar";
+import Loader from "../Loader/Loader";
 import { dangerousData } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
 
@@ -56,20 +57,28 @@ export default function PostsWrapper({ categoryName }) {
             return <Post data={data} key={index} />;
           })
         ) : (
-          <div>Loading Posts</div>
+          <Loader loading="posts" />
         )}
       </div>
-      <PostSearchBar
-        setSearchPhrase={setSearchPhrase}
-        setPage={setPage}
-        defaultPage={DEFAULT_PAGE}
-      />
-      <PostPagination
-        setPage={setPage}
-        setPerPage={setPerPage}
-        maxPages={maxPages}
-        page={page}
-      />
+      <div>
+        {posts ? (
+          <>
+            <PostSearchBar
+              setSearchPhrase={setSearchPhrase}
+              setPage={setPage}
+              defaultPage={DEFAULT_PAGE}
+            />
+            <PostPagination
+              setPage={setPage}
+              setPerPage={setPerPage}
+              maxPages={maxPages}
+              page={page}
+            />
+          </>
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 }

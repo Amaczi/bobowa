@@ -1,0 +1,32 @@
+#loader_wrapper {
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#loader_wheel span {
+  display: block;
+  width: min(60vw, 14rem);
+  aspect-ratio: 1/1;
+  border: 3px solid gray;
+  border-top: 3px solid #40c0f1;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+
+#loader_desc {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
