@@ -36,8 +36,10 @@ export default function Post() {
   }
 
   useEffect(() => {
-    loadPostData(dangerousData(slug));
-  }, []);
+    if (slug !== undefined) {
+      loadPostData(dangerousData(slug));
+    }
+  }, [slug]);
 
   useEffect(() => {
     post?.featured_media !== undefined && loadImageData(post.featured_media);
