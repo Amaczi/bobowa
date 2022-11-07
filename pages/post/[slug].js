@@ -1,7 +1,7 @@
 // React & style imports
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { apiConnect } from "../files/api/basic";
+import { apiConnect } from "../../files/api/basic";
 import styles from "./singlepost.module.css";
 
 // Next.js imports
@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // Other imports
-import { dangerousData } from "../files/utils/basic";
+import { dangerousData } from "../../files/utils/basic";
 
 export default function Post() {
   const [post, setPostData] = useState();

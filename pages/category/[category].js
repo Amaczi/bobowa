@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 
 // Components imports
-import PostsWrapper from "../files/components/PostsWrapper/PostsWrapper";
+import PostsWrapper from "../../files/components/PostsWrapper/PostsWrapper";
 
 export default function () {
   const {
