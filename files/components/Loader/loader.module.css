@@ -1,5 +1,5 @@
 #loader_wrapper {
-  width: calc(100vw - 2rem);
+  width: calc(100% - 2rem);
   height: calc(100vh - 2rem);
   display: flex;
   align-items: center;
