@@ -10,6 +10,9 @@ import Link from "next/link";
 // Other imports
 import { apiConnect } from "../../api/basic";
 
+// Defaults
+const DEFAULT_IMAGE = "/placeholder43.png";
+
 export default function Post({ data }) {
   const [image, setImageData] = useState();
   const [categories, setCategoriesData] = useState();
@@ -36,7 +39,11 @@ export default function Post({ data }) {
   return (
     <div className={styles.post}>
       <div>
-        <img src={image} className={styles.post_image} alt="post"></img>
+        <img
+          src={image || DEFAULT_IMAGE}
+          className={styles.post_image}
+          alt="post"
+        ></img>
         <div className={styles.post_categories}>
           {categories?.posts.map((el) => {
             return (
