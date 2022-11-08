@@ -18,9 +18,8 @@ const DEFAULT_IMAGE = "/placeholder169.png";
 export default function Post() {
   const [post, setPostData] = useState();
   const [image, setImageData] = useState();
-  const {
-    query: { slug },
-  } = useRouter();
+  const router = useRouter();
+  const { slug } = router.query;
 
   async function loadPostData(slug) {
     const data = await apiConnect(
