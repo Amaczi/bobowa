@@ -23,13 +23,18 @@
 
 .navbar_menu_element {
   cursor: pointer;
-  padding: 0.5rem;
   margin-left: 0.75rem;
 }
 
 .navbar_menu_element a {
   text-decoration: none;
   color: black;
+  padding: 0.5rem;
+  transition: 0.3s;
+}
+
+.navbar_menu_element a:hover {
+  color: #e02923;
 }
 
 @media only screen and (max-width: 600px) {
