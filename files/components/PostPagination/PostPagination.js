@@ -4,7 +4,7 @@ import styles from "./postpagination.module.css";
 import ReactPaginate from "react-paginate";
 
 export default function PostPagination({
-  setPage,
+  updatePageParam,
   setPerPage,
   page,
   maxPages,
@@ -13,10 +13,11 @@ export default function PostPagination({
 
   const updatePage = (e) => {
     if (e.selected !== undefined) {
-      setPage(e.selected + 1);
+      updatePageParam(e.selected + 1);
     } else {
       e.preventDefault();
-      pageNumber.current.value !== "" && setPage(pageNumber.current.value);
+      pageNumber.current.value !== "" &&
+        updatePageParam(pageNumber.current.value);
     }
   };
 
@@ -44,7 +45,8 @@ export default function PostPagination({
         </select>
         <form
           onSubmit={(e) => {
-            updatePage(e);
+            e.preventDefault();
+            updatePageParam(pageNumber.current.value);
           }}
         >
           <input
