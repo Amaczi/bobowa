@@ -57,7 +57,6 @@ export default function PostsWrapper({ categoryName }) {
   }, [query.page]);
 
   function updatePageParam(value) {
-    console.log(value);
     Router.push({
       pathname: "/",
       query: { page: encodeURI(value) },
@@ -81,7 +80,6 @@ export default function PostsWrapper({ categoryName }) {
       const link = `${baseLink}${searchPhrase !== "" ? linkPhrase : ""}${
         categoryId !== "" ? linkCategory : ""
       }`;
-
       let data = await apiConnect(link);
       setMaxPages(data.maxPages);
       setPosts(data.posts);
