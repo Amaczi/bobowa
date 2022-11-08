@@ -5,12 +5,12 @@ import styles from "./singlepost.module.css";
 
 // Next.js imports
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 // Other imports
 import Loader from "../../files/components/Loader/Loader";
 import { apiConnect } from "../../files/api/basic";
 import { dangerousData } from "../../files/utils/basic";
+import Navbar from "../../files/components/Navbar/Navbar";
 
 // Defaults
 const DEFAULT_IMAGE = "/placeholder169.png";
@@ -46,30 +46,28 @@ export default function Post() {
   }, [post]);
 
   return (
-    <div id={styles.singlepostwrapper}>
-      <div id={styles.singlepostnavbar}>
-        <Link href="/">
-          <button>Strona Główna</button>
-        </Link>
+    <>
+      <Navbar />
+      <div id={styles.singlepostwrapper}>
+        {post ? (
+          <div id={styles.singlepost}>
+            <h1
+              id={styles.singlepost_title}
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            ></h1>
+            <p id={styles.singlepost_date}>
+              {format(new Date(post?.date), "dd LLLL u - HH:mm")}
+            </p>
+            <img src={image || DEFAULT_IMAGE} alt="post"></img>
+            <div
+              id={styles.singlepostdata}
+              dangerouslySetInnerHTML={{ __html: post?.content.rendered }}
+            ></div>
+          </div>
+        ) : (
+          <Loader loading="post" />
+        )}
       </div>
-      {post ? (
-        <div id={styles.singlepost}>
-          <h1
-            id={styles.singlepost_title}
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          ></h1>
-          <p id={styles.singlepost_date}>
-            {format(new Date(post?.date), "dd LLLL u - HH:mm")}
-          </p>
-          <img src={image || DEFAULT_IMAGE} alt="post"></img>
-          <div
-            id={styles.singlepostdata}
-            dangerouslySetInnerHTML={{ __html: post?.content.rendered }}
-          ></div>
-        </div>
-      ) : (
-        <Loader loading="post" />
-      )}
-    </div>
+    </>
   );
 }
