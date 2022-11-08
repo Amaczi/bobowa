@@ -7,6 +7,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.3s;
+}
+
+.post:hover {
+  background-color: rgba(0, 109, 151, 0.1);
 }
 
 .post_categories {
@@ -66,18 +71,15 @@
   justify-content: flex-end;
 }
 
-.post_readmore button {
+.post_readmore a {
   padding: 0.5rem 1.25rem;
-  border: none;
   background-color: #23c33b;
   border-radius: 2rem;
-}
-
-.post_readmore button > a {
+  cursor: pointer;
   color: white;
   text-decoration: none;
-  font-family: Poppins;
   font-weight: 600;
+  font-size: 0.875rem;
 }
 
 @media only screen and (max-width: 1600px) {
