@@ -11,7 +11,7 @@ import { dangerousData } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
 
 // Defaults
-const DEFAULT_PER_PAGE = 6;
+const DEFAULT_PER_PAGE = 8;
 const DEFAULT_PAGE = 1;
 const DEFAULT_SEARCH = "";
 const DEFAULT_CATEGORY = "";

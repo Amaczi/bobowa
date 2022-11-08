@@ -38,9 +38,9 @@ export default function PostPagination({
       </div>
       <div id={styles.post_pagination_options}>
         <select onChange={(e) => setPerPage(e.target.value)}>
-          <option value="6">Wyświetl na stronie: 6</option>
-          <option value="12">Wyświetl na stronie: 12</option>
-          <option value="20">Wyświetl na stronie: 20</option>
+          <option value="8">Wyświetl na stronie: 8</option>
+          <option value="16">Wyświetl na stronie: 16</option>
+          <option value="24">Wyświetl na stronie: 24</option>
         </select>
         <form
           onSubmit={(e) => {
