@@ -7,7 +7,7 @@ import Post from "../Post/Post";
 import PostPagination from "../PostPagination/PostPagination";
 import PostSearchBar from "../PostSearchBar/PostSearchBar";
 import Loader from "../Loader/Loader";
-import { dangerousData } from "../../utils/basic";
+import { dangerousData, scrollToTop } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
 
 // Defaults
@@ -36,6 +36,7 @@ export default function PostsWrapper({ categoryName }) {
   useEffect(() => {
     getCategoryId(dangerousData(categoryName || DEFAULT_CATEGORY));
     loadData();
+    scrollToTop();
   }, [page, perpage, searchPhrase, categoryName, categoryId]);
 
   async function loadData() {
