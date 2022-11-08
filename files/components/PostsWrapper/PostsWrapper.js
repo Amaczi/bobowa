@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./postswrapper.module.css";
 
+// Next.js imports
+import Router, { useRouter } from "next/router";
+
 // Component and other imports
 import Post from "../Post/Post";
 import PostPagination from "../PostPagination/PostPagination";
@@ -17,6 +20,8 @@ const DEFAULT_SEARCH = "";
 const DEFAULT_CATEGORY = "";
 
 export default function PostsWrapper({ categoryName }) {
+  const { query, isReady } = useRouter();
+  const [routerLoading, setRouterLoading] = useState(true);
   const [posts, setPosts] = useState();
   const [maxPages, setMaxPages] = useState();
   const [page, setPage] = useState(DEFAULT_PAGE);
@@ -43,6 +48,23 @@ export default function PostsWrapper({ categoryName }) {
   }
 
   useEffect(() => {
+    if (query.page !== undefined && isReady) {
+      setPage(query.page);
+      setRouterLoading(false);
+    } else {
+      setRouterLoading(false);
+    }
+  }, [query.page]);
+
+  function updatePageParam(value) {
+    console.log(value);
+    Router.push({
+      pathname: "/",
+      query: { page: encodeURI(value) },
+    });
+  }
+
+  useEffect(() => {
     getCategoryId(dangerousData(categoryName || DEFAULT_CATEGORY));
   }, [categoryName]);
 
@@ -52,7 +74,7 @@ export default function PostsWrapper({ categoryName }) {
   }, [page, perpage, searchPhrase, categoryFetching]);
 
   async function loadData() {
-    if (categoryFetching === false) {
+    if (categoryFetching === false && routerLoading === false) {
       const baseLink = `https://bobowa24.pl/wp-json/wp/v2/posts/?per_page=${perpage}&page=${page}`;
       const linkPhrase = `&search=${searchPhrase}`;
       const linkCategory = `&categories=${categoryId}`;
@@ -82,11 +104,11 @@ export default function PostsWrapper({ categoryName }) {
           <>
             <PostSearchBar
               setSearchPhrase={setSearchPhrase}
-              setPage={setPage}
+              updatePageParam={updatePageParam}
               defaultPage={DEFAULT_PAGE}
             />
             <PostPagination
-              setPage={setPage}
+              updatePageParam={updatePageParam}
               setPerPage={setPerPage}
               maxPages={maxPages}
               page={page}
