@@ -51,7 +51,7 @@ export default function PostsWrapper({ categoryName }) {
     if (query.page !== undefined && isReady) {
       setPage(query.page);
       setRouterLoading(false);
-    } else {
+    } else if (isReady) {
       setRouterLoading(false);
     }
   }, [query.page]);
