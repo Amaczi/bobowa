@@ -1,5 +1,4 @@
-// React & style imports
-import React from "react";
+// Style imports
 import styles from "./navbar.module.css";
 
 // Next.js imports
@@ -14,7 +13,7 @@ export default function Navbar() {
           <Link href="/">Strona Główna</Link>
         </li>
         <li className={styles.navbar_menu_element}>
-          <Link href="/kontakt">Kontakt</Link>
+          <Link href="/contact">Kontakt</Link>
         </li>
       </ul>
     </div>
