@@ -82,11 +82,9 @@ export default function Post({ data }) {
         ></div>
       </div>
       <div className={styles.post_readmore}>
-        <button>
-          <Link href="/post/[slug]" as={`/post/${data.slug}`}>
-            Czytaj dalej
-          </Link>
-        </button>
+        <Link href="/post/[slug]" as={`/post/${data.slug}`}>
+          Czytaj dalej
+        </Link>
       </div>
     </div>
   );
