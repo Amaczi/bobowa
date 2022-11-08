@@ -39,11 +39,17 @@ export default function Post({ data }) {
   return (
     <div className={styles.post}>
       <div>
-        <img
-          src={image || DEFAULT_IMAGE}
-          className={styles.post_image}
-          alt="post"
-        ></img>
+        <Link
+          href="/post/[slug]"
+          as={`/post/${data.slug}`}
+          className={styles.post_link_image}
+        >
+          <img
+            src={image || DEFAULT_IMAGE}
+            className={styles.post_image}
+            alt="post"
+          ></img>
+        </Link>
         <div className={styles.post_categories}>
           {categories?.posts.map((el) => {
             return (
@@ -60,10 +66,16 @@ export default function Post({ data }) {
         <p className={styles.post_date}>
           {format(new Date(data.date), "d LLL u - HH:mm")}
         </p>
-        <h3
-          className={styles.post_title}
-          dangerouslySetInnerHTML={{ __html: data.title.rendered }}
-        ></h3>
+        <Link
+          href="/post/[slug]"
+          as={`/post/${data.slug}`}
+          className={styles.post_link}
+        >
+          <h3
+            className={styles.post_title}
+            dangerouslySetInnerHTML={{ __html: data.title.rendered }}
+          ></h3>
+        </Link>
         <div
           className={styles.post_description}
           dangerouslySetInnerHTML={{ __html: data.excerpt.rendered }}

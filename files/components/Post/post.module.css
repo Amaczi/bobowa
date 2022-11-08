@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 0.25rem;
 }
 
 .post_category {
@@ -31,6 +32,14 @@
   border-radius: 0.25rem;
 }
 
+.post_link_image {
+  display: block;
+}
+
+.post_link_image img {
+  display: block;
+}
+
 .post_date {
   font-size: 0.875rem;
   margin-top: 0.5rem;
@@ -38,6 +47,11 @@
 
 .post_title {
   margin-top: 0.25rem;
+}
+
+.post_link {
+  color: black;
+  text-decoration: none;
 }
 
 .post_description {
