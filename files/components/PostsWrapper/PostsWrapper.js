@@ -29,7 +29,9 @@ export default function PostsWrapper({ categoryName }) {
       const data = await apiConnect(
         `https://bobowa24.pl/wp-json/wp/v2/categories/?slug=${name}`
       );
-      setCategoryId(data.posts[0].id);
+      if (data.posts[0] !== undefined) {
+        setCategoryId(data.posts[0].id);
+      }
     }
   }
 
