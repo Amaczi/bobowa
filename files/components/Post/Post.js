@@ -1,7 +1,6 @@
 // React & style imports
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { v4 as uuidv4 } from "uuid";
 import styles from "./post.module.css";
 
 // Next.js imports
@@ -55,7 +54,7 @@ export default function Post({ data }) {
             return (
               <Link
                 className={styles.post_category}
-                key={uuidv4()}
+                key={`${data.id}${el.id}`}
                 href={`/category/${el.slug}/`}
               >
                 {el.name}
