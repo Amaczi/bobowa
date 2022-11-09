@@ -1,5 +1,14 @@
-import React from "react";
+// Style imports
+import styles from "./contact.module.css";
+
+// Other imports
+import Navbar from "../../files/components/Navbar/Navbar";
 
 export default function contact() {
-  return <div>contact</div>;
+  return(
+    <>
+      <Navbar />
+      <div>contact</div>;
+    </>
+  )
 }
