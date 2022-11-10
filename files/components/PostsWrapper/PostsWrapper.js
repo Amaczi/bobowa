@@ -12,23 +12,34 @@ import PostSearchBar from "../PostSearchBar/PostSearchBar";
 import Loader from "../Loader/Loader";
 import { dangerousData, scrollToTop } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
+import { useAppContext } from "../../../files/context/basic";
 
 // Defaults
-const DEFAULT_PER_PAGE = 8;
 const DEFAULT_PAGE = 1;
-const DEFAULT_SEARCH = "";
 const DEFAULT_CATEGORY = "";
 
 export default function PostsWrapper({ categoryName }) {
   const { query, isReady } = useRouter();
   const [routerLoading, setRouterLoading] = useState(true);
-  const [posts, setPosts] = useState();
-  const [maxPages, setMaxPages] = useState();
-  const [page, setPage] = useState(DEFAULT_PAGE);
-  const [perpage, setPerPage] = useState(DEFAULT_PER_PAGE);
-  const [searchPhrase, setSearchPhrase] = useState(DEFAULT_SEARCH);
+  const [
+    posts,
+    setPosts,
+    postsQuery,
+    setPostsQuery,
+    maxPages,
+    setMaxPages,
+    page,
+    setPage,
+    perpage,
+    setPerPage,
+    searchPhrase,
+    setSearchPhrase,
+    categoryId,
+    setCategoryId,
+  ] = useAppContext();
+  // const [searchPhrase, setSearchPhrase] = useState(DEFAULT_SEARCH);
   const [categoryFetching, setCategoryFetching] = useState(true);
-  const [categoryId, setCategoryId] = useState(DEFAULT_CATEGORY);
+  // const [categoryId, setCategoryId] = useState(DEFAULT_CATEGORY);
 
   async function getCategoryId(name) {
     categoryFetching === false && setCategoryFetching(true);
@@ -38,11 +49,14 @@ export default function PostsWrapper({ categoryName }) {
       );
       if (data.posts[0] !== undefined) {
         setCategoryId(data.posts[0].id);
+        setPage(DEFAULT_PAGE);
         setCategoryFetching(false);
       } else {
+        setCategoryId(DEFAULT_CATEGORY);
         setCategoryFetching(false);
       }
     } else {
+      setCategoryId(DEFAULT_CATEGORY);
       setCategoryFetching(false);
     }
   }
@@ -80,9 +94,12 @@ export default function PostsWrapper({ categoryName }) {
       const link = `${baseLink}${searchPhrase !== "" ? linkPhrase : ""}${
         categoryId !== "" ? linkCategory : ""
       }`;
-      let data = await apiConnect(link);
-      setMaxPages(data.maxPages);
-      setPosts(data.posts);
+      if (postsQuery !== link) {
+        let data = await apiConnect(link);
+        setMaxPages(data.maxPages);
+        setPosts(data.posts);
+        setPostsQuery(link);
+      }
     }
   }
 
