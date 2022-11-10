@@ -37,9 +37,7 @@ export default function PostsWrapper({ categoryName }) {
     categoryId,
     setCategoryId,
   ] = useAppContext();
-  // const [searchPhrase, setSearchPhrase] = useState(DEFAULT_SEARCH);
   const [categoryFetching, setCategoryFetching] = useState(true);
-  // const [categoryId, setCategoryId] = useState(DEFAULT_CATEGORY);
 
   async function getCategoryId(name) {
     categoryFetching === false && setCategoryFetching(true);
@@ -63,18 +61,27 @@ export default function PostsWrapper({ categoryName }) {
 
   useEffect(() => {
     if (query.page !== undefined && isReady) {
-      setPage(query.page);
+      updatePageParam(query.page);
       setRouterLoading(false);
     } else if (isReady) {
+      updatePageParam(1);
       setRouterLoading(false);
     }
   }, [query.page]);
 
   function updatePageParam(value) {
-    Router.push({
-      pathname: "/",
-      query: { page: encodeURI(value) },
-    });
+    setPage(value);
+    if (dangerousData(categoryName) !== "undefined") {
+      Router.push({
+        pathname: `/category/${categoryName}/`,
+        query: { page: encodeURI(value) },
+      });
+    } else {
+      Router.push({
+        pathname: `/`,
+        query: { page: encodeURI(value) },
+      });
+    }
   }
 
   useEffect(() => {
