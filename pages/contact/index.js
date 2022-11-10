@@ -5,10 +5,12 @@ import styles from "./contact.module.css";
 import Navbar from "../../files/components/Navbar/Navbar";
 
 export default function contact() {
-  return(
+  return (
     <>
       <Navbar />
-      <div>contact</div>;
+      <div id={styles.contact_wrapper}>
+        <h1>Kontakt</h1>
+      </div>
     </>
-  )
+  );
 }

@@ -9,7 +9,7 @@
 
 #loader_wheel span {
   display: block;
-  width: min(55vw, 12rem);
+  width: min(50vw, 12rem);
   aspect-ratio: 1/1;
   border: 3px solid gray;
   border-top: 3px solid #40c0f1;

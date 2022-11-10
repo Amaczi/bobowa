@@ -7,10 +7,10 @@ import styles from "./singlepost.module.css";
 import { useRouter } from "next/router";
 
 // Other imports
+import Navbar from "../../files/components/Navbar/Navbar";
 import Loader from "../../files/components/Loader/Loader";
 import { apiConnect } from "../../files/api/basic";
 import { dangerousData } from "../../files/utils/basic";
-import Navbar from "../../files/components/Navbar/Navbar";
 
 // Defaults
 const DEFAULT_IMAGE = "/placeholder169.png";

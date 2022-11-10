@@ -1,10 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// React imports
+import { createContext, useContext, useState } from "react";
+
+// Next.js
+const Context = createContext();
+
+// Defaults
 const DEFAULT_PER_PAGE = 8;
 const DEFAULT_PAGE = 1;
 const DEFAULT_SEARCH = "";
 const DEFAULT_CATEGORY = "";
-
-const Context = createContext();
 
 export function AppContext({ children }) {
   let [sharedState, updateSharedState] = useState();
@@ -14,25 +18,6 @@ export function AppContext({ children }) {
   let [sharedPerPage, updateSharedPerPage] = useState(DEFAULT_PER_PAGE);
   let [sharedSearchPhrase, updateSharedSearchPhrase] = useState(DEFAULT_SEARCH);
   let [sharedCategory, updateSharedCategory] = useState(DEFAULT_CATEGORY);
-
-  // useEffect(() => {
-  //   console.log("");
-  //   console.log("state: ", sharedState);
-  //   console.log("query: ", sharedQuery);
-  //   console.log("maxPages: ", sharedMaxPages);
-  //   console.log("Page: ", sharedPage);
-  //   console.log("PerPage: ", sharedPerPage);
-  //   console.log("Search: ", sharedSearchPhrase);
-  //   console.log("Category: ", sharedCategory);
-  // }, [
-  //   sharedState,
-  //   sharedQuery,
-  //   sharedMaxPages,
-  //   sharedPage,
-  //   sharedPerPage,
-  //   sharedSearchPhrase,
-  //   sharedCategory,
-  // ]);
 
   return (
     <Context.Provider

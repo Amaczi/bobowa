@@ -7,9 +7,9 @@ import Router, { useRouter } from "next/router";
 
 // Component and other imports
 import Post from "../Post/Post";
+import Loader from "../Loader/Loader";
 import PostPagination from "../PostPagination/PostPagination";
 import PostSearchBar from "../PostSearchBar/PostSearchBar";
-import Loader from "../Loader/Loader";
 import { dangerousData, scrollToTop } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
 import { useAppContext } from "../../../files/context/basic";
@@ -21,6 +21,7 @@ const DEFAULT_CATEGORY = "";
 export default function PostsWrapper({ categoryName }) {
   const { query, isReady } = useRouter();
   const [routerLoading, setRouterLoading] = useState(true);
+  const [categoryFetching, setCategoryFetching] = useState(true);
   const [
     posts,
     setPosts,
@@ -37,7 +38,6 @@ export default function PostsWrapper({ categoryName }) {
     categoryId,
     setCategoryId,
   ] = useAppContext();
-  const [categoryFetching, setCategoryFetching] = useState(true);
 
   async function getCategoryId(name) {
     categoryFetching === false && setCategoryFetching(true);
@@ -46,8 +46,8 @@ export default function PostsWrapper({ categoryName }) {
         `https://bobowa24.pl/wp-json/wp/v2/categories/?slug=${name}`
       );
       if (data.posts[0] !== undefined) {
-        setCategoryId(data.posts[0].id);
         setPage(DEFAULT_PAGE);
+        setCategoryId(data.posts[0].id);
         setCategoryFetching(false);
       } else {
         setCategoryId(DEFAULT_CATEGORY);
@@ -89,8 +89,8 @@ export default function PostsWrapper({ categoryName }) {
   }, [categoryName]);
 
   useEffect(() => {
-    loadData();
     scrollToTop();
+    loadData();
   }, [page, perpage, searchPhrase, categoryFetching]);
 
   async function loadData() {

@@ -6,9 +6,8 @@ import PostsWrapper from "../../files/components/PostsWrapper/PostsWrapper";
 import Navbar from "../../files/components/Navbar/Navbar";
 
 export default function () {
-  const {
-    query: { category },
-  } = useRouter();
+  const router = useRouter();
+  const { category } = router.query;
 
   return (
     <>
