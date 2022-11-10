@@ -4,14 +4,14 @@ import styles from "./postsearchbar.module.css";
 
 export default function PostSearchBar({
   setSearchPhrase,
-  setPage,
+  updatePageParam,
   defaultPage,
 }) {
   const phraseRef = useRef();
 
   const setSearchByPhrase = (e) => {
     e.preventDefault();
-    setPage(defaultPage);
+    updatePageParam(defaultPage);
     setSearchPhrase(phraseRef.current.value);
   };
 
