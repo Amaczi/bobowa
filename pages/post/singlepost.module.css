@@ -1,6 +1,6 @@
 #singlepostwrapper {
   width: 80%;
-  min-height: 100vh;
+  min-height: calc(100vh - 7rem);
   padding: 0 10%;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@
   #singlepostwrapper {
     width: 92%;
     padding: 0 4%;
+    min-height: calc(100vh - 9rem);
   }
 
   #singlepost {
