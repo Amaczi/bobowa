@@ -1,24 +1,29 @@
-// React & style imports
+// React & Styles imports
 import React, { useEffect, useState } from "react";
 import styles from "./postswrapper.module.css";
 
-// Next.js imports
+// Next.js & Typescript imports
 import Router, { useRouter } from "next/router";
 
-// Component and other imports
+// Components & Other imports
 import Post from "../Post/Post";
 import Loader from "../Loader/Loader";
 import PostPagination from "../PostPagination/PostPagination";
 import PostSearchBar from "../PostSearchBar/PostSearchBar";
 import { dangerousData, scrollToTop } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
-import { useAppContext } from "../../../files/context/basic";
+import { useAppContext } from "../../context/basic";
 
 // Defaults
 const DEFAULT_PAGE = 1;
 const DEFAULT_CATEGORY = "";
 
-export default function PostsWrapper({ categoryName }) {
+// Interfaces
+interface PostsWrapperProps {
+  categoryName?: string | string[];
+}
+
+export default function PostsWrapper({ categoryName }: PostsWrapperProps) {
   const { query, isReady } = useRouter();
   const [routerLoading, setRouterLoading] = useState(true);
   const [categoryFetching, setCategoryFetching] = useState(true);

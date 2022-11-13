@@ -1,10 +1,10 @@
-// Style imports
+// React & Styles imports
 import styles from "./contact.module.css";
 
-// Other imports
+// Components & Other imports
 import Navbar from "../../files/components/Navbar/Navbar";
 
-export default function contact() {
+export default function contact(): JSX.Element {
   return (
     <>
       <Navbar />

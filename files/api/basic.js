@@ -4,6 +4,6 @@ export const apiConnect = async (target) => {
     headers: {},
   });
   const posts = await response.json();
-  const maxPages = response.headers.get("X-WP-TotalPages");
+  const maxPages = Math.ceil(response.headers.get("X-WP-TotalPages"));
   return { posts, maxPages };
 };
