@@ -87,8 +87,9 @@
   cursor: pointer;
 }
 
-#post_pagination_options form > button > i {
-  font-size: 1.75rem;
+#post_pagination_options form > button > svg {
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.625rem;
 }
 

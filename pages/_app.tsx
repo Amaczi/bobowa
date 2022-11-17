@@ -18,7 +18,6 @@ export default function App({ Component }: AppProps): JSX.Element {
     <>
       <Head>
         <title>Bobowa24</title>
-        <Script src="https://unpkg.com/phosphor-icons" />
       </Head>
       <AppContext>
         <Component />

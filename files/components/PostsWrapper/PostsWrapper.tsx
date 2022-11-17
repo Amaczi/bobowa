@@ -13,6 +13,7 @@ import PostSearchBar from "../PostSearchBar/PostSearchBar";
 import { dangerousData, scrollToTop } from "../../utils/basic";
 import { apiConnect } from "../../api/basic";
 import { useAppContext } from "../../context/basic";
+import { ParsedUrlQuery } from "querystring";
 
 // Defaults
 const DEFAULT_PAGE = 1;
@@ -23,31 +24,29 @@ interface PostsWrapperProps {
   categoryName?: string | string[];
 }
 
-export default function PostsWrapper({ categoryName }: PostsWrapperProps) {
-  const { query, isReady } = useRouter();
+interface QueryProps {
+  query: ParsedUrlQuery;
+  isReady: boolean;
+}
+
+export default function PostsWrapper({
+  categoryName,
+}: PostsWrapperProps): JSX.Element {
+  const { query, isReady }: QueryProps = useRouter();
   const [routerLoading, setRouterLoading] = useState(true);
   const [categoryFetching, setCategoryFetching] = useState(true);
-  const [
-    posts,
-    setPosts,
-    postsQuery,
-    setPostsQuery,
-    maxPages,
-    setMaxPages,
-    page,
-    setPage,
-    perpage,
-    setPerPage,
-    searchPhrase,
-    setSearchPhrase,
-    categoryId,
-    setCategoryId,
-  ] = useAppContext();
+  const [posts, setPosts] = useAppContext().state;
+  const [postsQuery, setPostsQuery] = useAppContext().query;
+  const [maxPages, setMaxPages] = useAppContext().maxpages;
+  const [page, setPage] = useAppContext().page;
+  const [perpage, setPerPage] = useAppContext().perpage;
+  const [searchPhrase, setSearchPhrase] = useAppContext().phrase;
+  const [categoryId, setCategoryId] = useAppContext().category;
 
-  async function getCategoryId(name) {
+  async function getCategoryId(name: string): Promise<void> {
     categoryFetching === false && setCategoryFetching(true);
     if (name !== "") {
-      const data = await apiConnect(
+      const data: { posts: object; maxPages: number } = await apiConnect(
         `https://bobowa24.pl/wp-json/wp/v2/categories/?slug=${name}`
       );
       if (data.posts[0] !== undefined) {
@@ -74,7 +73,7 @@ export default function PostsWrapper({ categoryName }: PostsWrapperProps) {
     }
   }, [query.page]);
 
-  function updatePageParam(value) {
+  function updatePageParam(value: any): void {
     setPage(value);
     if (dangerousData(categoryName) !== "undefined") {
       Router.push({
@@ -98,16 +97,16 @@ export default function PostsWrapper({ categoryName }: PostsWrapperProps) {
     loadData();
   }, [page, perpage, searchPhrase, categoryFetching]);
 
-  async function loadData() {
+  async function loadData(): Promise<void> {
     if (categoryFetching === false && routerLoading === false) {
-      const baseLink = `https://bobowa24.pl/wp-json/wp/v2/posts/?per_page=${perpage}&page=${page}`;
-      const linkPhrase = `&search=${searchPhrase}`;
-      const linkCategory = `&categories=${categoryId}`;
-      const link = `${baseLink}${searchPhrase !== "" ? linkPhrase : ""}${
-        categoryId !== "" ? linkCategory : ""
-      }`;
+      const baseLink: string = `https://bobowa24.pl/wp-json/wp/v2/posts/?per_page=${perpage}&page=${page}`;
+      const linkPhrase: string = `&search=${searchPhrase}`;
+      const linkCategory: string = `&categories=${categoryId}`;
+      const link: string = `${baseLink}${
+        searchPhrase !== "" ? linkPhrase : ""
+      }${categoryId !== "" ? linkCategory : ""}`;
       if (postsQuery !== link) {
-        let data = await apiConnect(link);
+        let data: { posts: object; maxPages: number } = await apiConnect(link);
         setMaxPages(data.maxPages);
         setPosts(data.posts);
         setPostsQuery(link);

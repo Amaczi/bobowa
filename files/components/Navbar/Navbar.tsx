@@ -1,10 +1,10 @@
-// Style imports
+// React & Styles imports
 import styles from "./navbar.module.css";
 
-// Next.js imports
+// Next.js & Typescript imports
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
   return (
     <div id={styles.navbar}>
       <img src="/logo.webp" id={styles.navbar_logo}></img>

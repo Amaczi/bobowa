@@ -1,30 +1,60 @@
-// React & style imports
+// React & Styles imports
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import styles from "./post.module.css";
 
-// Next.js imports
+// Next.js & Typescript imports
 import Link from "next/link";
 
-// Other imports
+// Components & Other imports
 import { apiConnect } from "../../api/basic";
 
 // Defaults
 const DEFAULT_IMAGE = "/placeholder43.png";
 
-export default function Post({ data }) {
-  const [image, setImageData] = useState();
-  const [categories, setCategoriesData] = useState();
+// Interfaces
+interface DataProps {
+  data: {
+    title: {
+      rendered: string;
+    };
+    content: {
+      rendered: string;
+    };
+    excerpt: {
+      rendered: string;
+    };
+    id: number;
+    slug: string;
+    date: string;
+    featured_media: number;
+    categories: [];
+  };
+}
 
-  async function loadImage(id) {
-    const data = await apiConnect(
+interface ImageProps {
+  posts: {
+    source_url?: string;
+  };
+}
+
+interface CategoryProps {
+  posts: {};
+}
+
+export default function Post({ data }: DataProps): JSX.Element {
+  const [image, setImageData] = useState<any | null>();
+  const [categories, setCategoriesData] = useState<any | null>();
+
+  async function loadImage(id: number): Promise<void> {
+    const data: ImageProps = await apiConnect(
       `https://bobowa24.pl/wp-json/wp/v2/media/${id}`
     );
     setImageData(data.posts.source_url);
   }
 
-  async function loadCategory(ids) {
-    const data = await apiConnect(
+  async function loadCategory(ids: []): Promise<void> {
+    const data: CategoryProps = await apiConnect(
       `https://bobowa24.pl/wp-json/wp/v2/categories/?include=${ids.toString()}`
     );
     setCategoriesData(data);

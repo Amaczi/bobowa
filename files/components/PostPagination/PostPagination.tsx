@@ -1,17 +1,37 @@
-// React & style imports
+// React & Styles imports
 import React, { useRef } from "react";
 import styles from "./postpagination.module.css";
 import ReactPaginate from "react-paginate";
+import { MagnifyingGlass } from "phosphor-react";
+
+// Interfaces
+interface FunctionsProps {
+  updatePageParam: Function;
+  setPerPage: Function;
+  page: number;
+  maxPages: number;
+}
+
+interface PageNumberProps {
+  current: {
+    value?: string;
+  };
+}
+
+interface PaginationProps {
+  selected?: number;
+  preventDefault?: Function;
+}
 
 export default function PostPagination({
   updatePageParam,
   setPerPage,
   page,
   maxPages,
-}) {
-  const pageNumber = useRef();
+}: FunctionsProps): JSX.Element {
+  const pageNumber: PageNumberProps = useRef();
 
-  const updatePage = (e) => {
+  const updatePage = (e: PaginationProps): void => {
     if (e.selected !== undefined) {
       updatePageParam(e.selected + 1);
     } else {
@@ -57,7 +77,7 @@ export default function PostPagination({
             ref={pageNumber}
           ></input>
           <button>
-            <i className="ph-magnifying-glass-light"></i>
+            <MagnifyingGlass size={32} color="#424242" weight="light" />
           </button>
         </form>
       </div>
