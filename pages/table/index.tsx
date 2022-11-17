@@ -13,29 +13,11 @@ import { apiConnect } from "../../files/api/basic";
 import Navbar from "../../files/components/Navbar/Navbar";
 import Loader from "../../files/components/Loader/Loader";
 
-function Table({ columns, data }) {
-  if (data !== undefined) {
-    console.log(columns);
-  }
-}
-
-export default function table() {
-  const [
-    posts,
-    setPosts,
-    postsQuery,
-    setPostsQuery,
-    maxPages,
-    setMaxPages,
-    page,
-    setPage,
-    perpage,
-    setPerPage,
-    searchPhrase,
-    setSearchPhrase,
-    categoryId,
-    setCategoryId,
-  ] = useAppContext();
+export default function table(): JSX.Element {
+  const [posts, setPosts] = useAppContext().state;
+  const [postsQuery, setPostsQuery] = useAppContext().query;
+  const [page, setPage] = useAppContext().page;
+  const [perpage, setPerPage] = useAppContext().perpage;
   async function loadData() {
     const baseLink = `https://bobowa24.pl/wp-json/wp/v2/posts/?per_page=${perpage}&page=${page}`;
     if (postsQuery !== "undefined") {
@@ -61,7 +43,6 @@ export default function table() {
   return (
     <>
       <Navbar />
-      <Table data={posts} columns={columns} />
     </>
   );
 }
