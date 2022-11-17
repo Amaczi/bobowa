@@ -12,12 +12,6 @@ interface FunctionsProps {
   maxPages: number;
 }
 
-interface PageNumberProps {
-  current: {
-    value?: string;
-  };
-}
-
 interface PaginationProps {
   selected?: number;
   preventDefault?: Function;
@@ -29,7 +23,7 @@ export default function PostPagination({
   page,
   maxPages,
 }: FunctionsProps): JSX.Element {
-  const pageNumber: PageNumberProps = useRef();
+  const pageNumber = useRef<HTMLInputElement>();
 
   const updatePage = (e: PaginationProps): void => {
     if (e.selected !== undefined) {

@@ -10,12 +10,6 @@ interface FunctionsProps {
   defaultPage: number;
 }
 
-interface PhraseRefProps {
-  current: {
-    value: string;
-  };
-}
-
 interface PaginationProps {
   selected?: number;
   preventDefault?: Function;
@@ -26,7 +20,7 @@ export default function PostSearchBar({
   updatePageParam,
   defaultPage,
 }: FunctionsProps): JSX.Element {
-  const phraseRef: PhraseRefProps = useRef();
+  const phraseRef = useRef<HTMLInputElement>();
 
   const setSearchByPhrase = (e: PaginationProps): void => {
     e.preventDefault();
