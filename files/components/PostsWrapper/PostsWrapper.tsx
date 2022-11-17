@@ -43,7 +43,7 @@ export default function PostsWrapper({
   const [searchPhrase, setSearchPhrase] = useAppContext().phrase;
   const [categoryId, setCategoryId] = useAppContext().category;
 
-  async function getCategoryId(name: string): Promise<void> {
+  async function getCategoryId(name: string | string[]): Promise<void> {
     categoryFetching === false && setCategoryFetching(true);
     if (name !== "") {
       const data: { posts: object; maxPages: number } = await apiConnect(

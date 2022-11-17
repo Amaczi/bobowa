@@ -1,4 +1,4 @@
-export function dangerousData(value: string | string[]): string {
+export function dangerousData(value: any): string {
   return encodeURIComponent(value);
 }
 
